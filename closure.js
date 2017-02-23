@@ -9,3 +9,14 @@ function makeAdder(x) {
 
   return add;
 }
+
+// `plusOne` gets a reference to the inner `add(..)`
+// function with closure over the `x` parameter of
+// the outer `makeAdder(..)`
+
+var plusOne = makeAdder( 1 );
+var plusTen = makeAdder ( 10 );
+
+plusOne( 3 ); // 4 <-- 1 + 3
+plusOne( 41 ); // 42 <-- 1 + 41
+plusTen( 13 ); // 23 <-- 10 + 13
