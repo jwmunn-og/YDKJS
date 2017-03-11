@@ -29,18 +29,49 @@
 // Parameter Module Example
 // --------------------------
 
-function CoolModule(id){
-  function identify(){
+// function CoolModule(id){
+//   function identify(){
+//     console.log(id);
+//   }
+
+//   return {
+//     identify: identify
+//   };
+// }
+
+// foo1 = CoolModule("foo 1");
+// foo2 = CoolModule("foo 2");
+
+// foo1.identify(); // foo 1
+// foo2.identify(); // foo 2
+
+
+// --------------------------
+// Named Module Example
+// --------------------------
+
+var foo = (function CoolModule(id){
+  function change(){
+    // modifying the public API
+    publicAPI.identify = identify2;
+  }
+
+  function identify1(){
     console.log(id);
   }
 
-  return {
-    identify: identify
+  function identify2(){
+    console.log(id.toUpperCase());
+  }
+
+  var publicAPI = {
+    change: change,
+    identify: identify1
   };
-}
 
-foo1 = CoolModule("foo 1");
-foo2 = CoolModule("foo 2");
+  return publicAPI;
+})("foo module");
 
-foo1.identify(); // foo 1
-foo2.identify(); // foo 2
+foo.identify();
+foo.change();
+foo.identify();
