@@ -11,3 +11,14 @@ var baz = foo(); // assigns the value returned by executing foo();
 
 // invokes inner function bar() but executes it OUTSIDE it's lexical scope
 baz(); // 2, whoa that is some observable closure.
+
+
+function wait(message){
+
+  setTimeout( function timer(){
+    console.log(message);
+  }, 1000);
+
+}
+
+wait("Hello, closure");
