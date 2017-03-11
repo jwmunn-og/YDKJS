@@ -1,9 +1,13 @@
 function foo(){
   var a = 2;
 
-  function bar(){
+  // bar() has lexical scope access to the inner scope of foo()
+  function bar(){ 
     console.log(a);
   }
-  bar(); // has closure over foo(); because it appears nested inside foo();
+  return bar; // pass the function bar() and return as a value
 }
-foo();
+var baz = foo(); // assigns the value returned by executing foo();
+
+// invokes inner function bar() but executes it OUTSIDE it's lexical scope
+baz(); // 2, whoa that is some observable closure.
